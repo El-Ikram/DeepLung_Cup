@@ -31,7 +31,7 @@ To ensure fair competition:\
 * After evaluating the submission, the score will appear on the leaderboard.
   
 # Leaderboard
-All evaluation results will be published in the file leaderboard.md.\
+All evaluation results will be published in the file Leaderboard.md.\
 Participants will be ranked according to the official evaluation metric.\
 Each entry will include the participant name, score, and submission date.\
 The leaderboard will be updated after each valid submission.
