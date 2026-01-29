@@ -1,1 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>GNN Mini-Challenge Leaderboard: CXR Normal vs Pneumonia Node Classification</title>
+  <style>
+    body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+
+    /* New background */
+    background: linear-gradient(13deg, #461220, #9a8c98);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+
+    /* Optional: smooth scroll for full viewport */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+    table { margin: auto; border-collapse: collapse; width: 60%; }
+    th, td { padding: 10px; border: 1px solid #ddd; }
+    th { background-color: #dde8ed; }
+    tr:nth-child(even) { background-color: #ebeaea; }
+  </style>
+</head>
+<body>
+
+    <div class="header-box">
+        <h1>🏆 CXR Normal vs Pneumonia 🏆</h1>
+        <p><b>Node Classification Ranked by Macro F1-score</b></p>
+        <p><b>Higher is better</b></p>
+      </div>
+      
+      <style>
+        .header-box {
+          background: linear-gradient(1deg, #f2e9e4, #9a8c98);
+          color: #fff;
+          padding: 25px 40px;
+          border-radius: 20px;
+          box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+          text-align: center;
+          max-width: 600px;
+          margin: 20px auto;
+          animation: fadeIn 1s ease-in-out;
+        }
+      
+        .header-box h1 {
+          margin: 0 0 10px 0;
+          font-size: 2em;
+        }
+      
+        .header-box p {
+          margin: 5px 0;
+          font-size: 1.1em;
+        }
+      
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(-10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+      </style>
+      
+
+      <div class="table-box">
+        <table>
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Team</th>
+              <th>Score</th>
+              <th>Submission Date</th>
+            </tr>
+          </thead>
+          <tbody id="board"></tbody>
+        </table>
+      </div>
+      
+      <style>
+        .table-box {
+          background: linear-gradient(1deg, #8c2f39, #461220);
+          padding: 20px 30px;
+          border-radius: 20px;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+          max-width: 800px;
+          margin: 30px auto;
+          animation: fadeIn 1s ease-in-out;
+        }
+      
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          color: #fff;
+          text-align: center;
+          font-family: "Segoe UI", Tahoma, sans-serif;
+        }
+      
+        th {
+          padding: 12px;
+          background: rgba(255,255,255,0.2);
+          text-transform: uppercase;
+        }
+      
+        td {
+          padding: 12px;
+          background: rgba(255,255,255,0.1);
+          transition: transform 0.2s ease, background 0.2s ease;
+        }
+      
+        tr:hover td {
+          background: rgba(255,255,255,0.25);
+          transform: scale(1.01);
+        }
+      
+        /* Rank colors */
+        tr.gold td { background: linear-gradient(90deg, #ffd700, #ffb347); color: #000; }
+        tr.silver td { background: linear-gradient(90deg, #cfd9df, #e2ebf0); color: #000; }
+        tr.bronze td { background: linear-gradient(90deg, #d1913c, #ffd194); color: #000; }
+      
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+      </style>
+      
+      <script>
+      fetch("leaderboard.json")
+        .then(response => response.json())
+        .then(data => {
+          data.sort((a, b) => b.score - a.score); // Sort descending by score
+          const table = document.getElementById("board");
+      
+          data.forEach((row, i) => {
+            let rankClass = "";
+            if (i === 0) rankClass = "gold";
+            else if (i === 1) rankClass = "silver";
+            else if (i === 2) rankClass = "bronze";
+      
+            // Format date nicely
+            let dateStr = new Date(row.submission_date).toLocaleDateString();
+      
+            table.innerHTML += `
+              <tr class="${rankClass}">
+                <td>#${i + 1}</td>
+                <td>${row.team}</td>
+                <td>${row.score.toFixed(4)}</td>
+                <td>${dateStr}</td>
+              </tr>`;
+          });
+        });
+      </script>
+      
+
+</body>
+</html>
 
