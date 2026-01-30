@@ -91,5 +91,7 @@ The competition features a **dynamic, automatically updated leaderboard**.
 
 [View the live leaderboard](https://El-Ikram.github.io/CXR_Normal_vs_Pneumonia_Node_Classification/leaderboard/index.html)
 
-# References
-Basira's lab lectures on GNNs.
+# 📚References
+* Basira's lab lectures on GNNs: [DGL_Videos](https://www.youtube.com/watch?v=gQRV_jUyaDw&list=PLug43ldmRSo14Y_vt7S6vanPGh-JpHR7T).\
+* Dataset: [Dataset](https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia).
+
