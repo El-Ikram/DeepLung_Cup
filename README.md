@@ -1,4 +1,7 @@
 # GNNs Mini Competition: Chest X-ray Normal vs Pneumonia (Node Classification)
+Not all graphs are social networks, some can help diagnose lungs.\
+Behind every chest X-ray lies a complex story waiting to be understood.\
+Welcome to this GNN mini-challenge!! Where chest X-rays become graphs and your model decides: Normal or Pneumonia.
  # 💢Problem Description 
  A chest X-ray is a medical imaging technique that uses a small amount of radiation to create images of the structures inside the chest, including the lungs, heart, and airways. It is one of the most common and important tools used by doctors to examine lung conditions.
 
@@ -92,6 +95,7 @@ The competition features a **dynamic, automatically updated leaderboard**.
 [View the live leaderboard](https://El-Ikram.github.io/CXR_Normal_vs_Pneumonia_Node_Classification/leaderboard/index.html)
 
 # 📚References
-* Basira's lab lectures on GNNs: [DGL_Videos](https://www.youtube.com/watch?v=gQRV_jUyaDw&list=PLug43ldmRSo14Y_vt7S6vanPGh-JpHR7T).\
+* Basira's lab lectures on GNNs: [DGL_Videos](https://www.youtube.com/watch?v=gQRV_jUyaDw&list=PLug43ldmRSo14Y_vt7S6vanPGh-JpHR7T).
 * Dataset: [Dataset](https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia).
 
+# License
