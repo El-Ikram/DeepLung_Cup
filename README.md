@@ -114,6 +114,31 @@ The competition features a **dynamic, automatically updated leaderboard**.
 
 [View the live leaderboard](https://El-Ikram.github.io/CXR_Normal_vs_Pneumonia_Node_Classification/leaderboard/index.html)
 
+## 🗓️Timeline
+Start Date: 02/07/2026
+
+Submission Deadline: 02/20/2026
+
+## 🚨Disclaimer
+
+This challenge is intended for educational purposes only.\
+The models developed here must not be used for real-world medical diagnosis.
+
+## ❓ FAQ
+
+**Q: Can I use CNNs or Transformers?**  
+A: No. This is a GNN-only challenge.
+
+**Q: Can I use pretrained models?**  
+A: No pretrained embeddings or models are allowed.
+
+**Q: Can I submit multiple times?**  
+A: Yes, but only the latest valid submission is scored.
+
+**Q: Can I submit after the deadline?**
+A: No, unfortunately submissions are not accepted after the deadline.
+
+
 ## 📚References
 * Basira's lab lectures on GNNs: [DGL_Videos](https://www.youtube.com/watch?v=gQRV_jUyaDw&list=PLug43ldmRSo14Y_vt7S6vanPGh-JpHR7T).
 * Dataset: [Dataset](https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia).
