@@ -64,7 +64,10 @@ function renderTable(){
       td.textContent = v;
       if(k === "rank") td.classList.add("rank");
       if(k === "score") td.classList.add("score");
-      if(state.hiddenCols.has(k)) td.style.display = "none";
+      //if(state.hiddenCols.has(k)) td.style.display = "none";
+      if(state.hiddenCols.has(k)) td.classList.add("hidden");
+      else td.classList.remove("hidden");
+
       tr.appendChild(td);
     });
     tbody.appendChild(tr);
@@ -73,12 +76,57 @@ function renderTable(){
   // hide headers accordingly
   document.querySelectorAll("#tbl thead th").forEach(th => {
     const k = th.dataset.key;
-    th.style.display = state.hiddenCols.has(k) ? "none" : "";
+    //th.style.display = state.hiddenCols.has(k) ? "none" : "";
+    th.classList.toggle("hidden", state.hiddenCols.has(k));
+
   });
 
   document.getElementById("status").textContent =
     rows.length ? `${rows.length} result(s)` : "No results";
 }
+
+
+
+function updateStats(rows){
+  if (!rows || rows.length === 0) {
+    document.getElementById("statParticipants").textContent = "0";
+    document.getElementById("statBest").textContent = "–";
+    document.getElementById("statAvg").textContent = "–";
+    document.getElementById("statModel").textContent = "–";
+    return;
+  }
+
+  // Participants (unique teams)
+  const teams = new Set(rows.map(r => r.team));
+  document.getElementById("statParticipants").textContent = teams.size;
+
+  // Scores
+  const scores = rows
+    .map(r => parseFloat(r.score))
+    .filter(v => !isNaN(v));
+
+  // Best score
+  const best = Math.max(...scores);
+  document.getElementById("statBest").textContent = best.toFixed(4);
+
+  // Average score
+  const avg = scores.reduce((a, b) => a + b, 0) / scores.length;
+  document.getElementById("statAvg").textContent = avg.toFixed(4);
+
+  // Most used model
+  const modelCount = {};
+  rows.forEach(r => {
+    if (!r.model) return;
+    modelCount[r.model] = (modelCount[r.model] || 0) + 1;
+  });
+
+  const topModel = Object.entries(modelCount)
+    .sort((a, b) => b[1] - a[1])[0][0];
+
+  document.getElementById("statModel").textContent = topModel.toUpperCase();
+}
+
+
 
 function applyFilters(){
   const q = document.getElementById("search").value.toLowerCase().trim();
@@ -124,7 +172,25 @@ function applyFilters(){
 
   state.filtered = rows;
   renderTable();
+  updateStats(state.filtered);
+
+
+  
+
 }
+
+function updateSortIndicators() {
+  document.querySelectorAll("#tbl thead th").forEach(th => {
+    th.classList.remove("sorted-asc", "sorted-desc");
+
+    if (th.dataset.key === state.sortKey) {
+      th.classList.add(
+        state.sortDir === "asc" ? "sorted-asc" : "sorted-desc"
+      );
+    }
+  });
+}
+
 
 function setupColumnToggles(){
   const cols = [
@@ -155,6 +221,8 @@ function setupColumnToggles(){
     lab.appendChild(sp);
     wrap.appendChild(lab);
   });
+  
+  
 }
 
 function setupSorting(){
@@ -205,6 +273,7 @@ async function main(){
 
     setupColumnToggles();
     setupSorting();
+    
 
     document.getElementById("search").addEventListener("input", applyFilters);
     document.getElementById("modelFilter").addEventListener("change", applyFilters);
@@ -218,6 +287,19 @@ async function main(){
     status.textContent = "Failed to load leaderboard.";
     console.error(e);
   }
+  document.getElementById("showAllCols").onclick = () => {
+    state.hiddenCols.clear();
+    setupColumnToggles();
+    renderTable();
+  };
+  
+  document.getElementById("hideAllCols").onclick = () => {
+    document.querySelectorAll("#columnToggles input").forEach(cb => {
+      state.hiddenCols.add(cb.id.replace("col_", ""));
+    });
+    setupColumnToggles();
+    renderTable();
+  };
 }
 
 main();
