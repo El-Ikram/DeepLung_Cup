@@ -7,6 +7,59 @@ Not all graphs are social networks, some can help diagnose lungs.</p>
 <p align="center">Welcome to this GNN mini-challenge!! Where chest X-rays become graphs and your model decides: Normal or Pneumonia.
 </p>
 
+## Repository Structure
+DeepLung_Cup/
+│
+|.github/
+│ └── workflows/
+| └── publish_leaderboard.yml
+│ └── score_submission.yml # GitHub Actions scoring workflow
+|
+|── Images/
+│ └── NORMAL2-IM-1427-0001.jpeg
+| └── person1949_bacteria_4880.jpeg
+|
+|── competition/
+│ └── config.yaml
+| └── evaluate.py
+│ └── metrics.py
+| └── render_leaderboard.py
+| └── validate_submission.py
+|
+|── data/
+│ ├── train/ # Labeled graph data (.pt)
+│ │ ├── NORMAL_.pt
+│ │ └── PNEUMONIA_.pt
+│ └── test/ # Unlabeled graph data (.pt)
+|
+|── docs/
+│ └── leaderboard.css
+| └── leaderboard.html
+│ └── leaderboard.js
+│ 
+├── leaderboard/
+│ ├── leaderboard.csv
+│ └── leaderboard.md 
+│
+├── starter_code/
+│ ├── baseline.py # Baseline GNN model
+│ └── requirements.txt # Python dependencies
+│
+├── submissions/
+│ └── README.md
+|
+├── leaderboard/
+│ ├── index.html # Live leaderboard
+│ └── leaderboard.json # Scores database
+│
+|── LICENSE # License information
+|
+├── README.md # Competition description
+|
+├── scoring_script.py # Evaluation script
+|
+└── update_leaderboard.py # Updates leaderboard automatically
+
  ## 💢Problem Description 
  A chest X-ray is a medical imaging technique that uses a small amount of radiation to create images of the structures inside the chest, including the lungs, heart, and airways. It is one of the most common and important tools used by doctors to examine lung conditions.
 
